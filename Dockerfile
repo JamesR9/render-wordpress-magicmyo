@@ -22,4 +22,4 @@ RUN chown www-data:www-data /var/www/html
 USER www-data:www-data
 
 
-COPY twentyninetine /var/www/html/wp-content/themes/twentyninetine
+COPY twentyninetine/ ./wp-content/themes/twentyninetine
