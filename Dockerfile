@@ -22,4 +22,4 @@ FROM wordpress:5.3.2-apache
 #USER www-data:www-data
 
 
-COPY twentyninetine /var/www/html/wp-content/themes/twentyninetine
+COPY twentynineteen /var/www/html/wp-content/themes/twentynineteen
