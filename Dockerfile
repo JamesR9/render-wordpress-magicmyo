@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y magic-wormhole
 #VOLUME /var/www/html
 COPY plugins/ /var/www/html/wp-content/plugins
 COPY themes/ /var/www/html/wp-content/themes
-COPY uploads/ /var/www/html/wp-content/uploads
+#COPY uploads/ /var/www/html/wp-content/uploads
 RUN usermod -s /bin/bash www-data
 RUN chown www-data:www-data /var/www
 USER www-data:www-data
