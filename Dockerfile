@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y magic-wormhole
 	
 #COPY themes /var/www/html/wp-content/themes
 #COPY plugins /var/www/html/wp-content/plugins
+COPY uploads/ /var/www/html/wp-content/uploads
 #COPY custom.ini $PHP_INI_DIR/conf.d/
 
 #COPY plugins /var/www/html/wp-content/plugins
