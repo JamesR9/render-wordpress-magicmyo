@@ -9,7 +9,7 @@ FROM wordpress:5.3.2-apache
 #	find /etc/apache2 -name '*.conf' -type f -exec sed -ri -e "s!/var/www/html!$PWD!g" -e "s!Directory /var/www/!Directory $PWD!g" '{}' +; \
 #	cp -s wp-config-docker.php wp-config.php
 #WORKDIR /var/www/html	
-#COPY themes /var/www/html/wp-content/themes
+
 #COPY plugins /var/www/html/wp-content/plugins
 #COPY wp-content/ ./wp-content
 #COPY custom.ini $PHP_INI_DIR/conf.d/
@@ -18,5 +18,8 @@ FROM wordpress:5.3.2-apache
 #COPY themes /var/www/html/wp-content/themes
 #COPY uploads /var/www/html/wp-content/uploads
 RUN usermod -s /bin/bash www-data
-RUN chown www-data:www-data /var/www
+RUN chown www-data:www-data /var/www/html
 USER www-data:www-data
+
+
+COPY twentyninetine /var/www/html/wp-content/themes/twentyninetine
