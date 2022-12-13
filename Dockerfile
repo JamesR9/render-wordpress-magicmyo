@@ -17,9 +17,9 @@ FROM wordpress:5.3.2-apache
 #COPY plugins /var/www/html/wp-content/plugins
 #COPY themes /var/www/html/wp-content/themes
 #COPY uploads /var/www/html/wp-content/uploads
-RUN usermod -s /bin/bash www-data
-RUN chown www-data:www-data /var/www/html
-USER www-data:www-data
+#RUN usermod -s /bin/bash www-data
+#RUN chown www-data:www-data /var/www/html
+#USER www-data:www-data
 
 
-COPY twentyninetine/ ./wp-content/themes/twentyninetine
+COPY twentyninetine /var/www/html/wp-content/themes/twentyninetine
