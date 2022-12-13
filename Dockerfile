@@ -3,7 +3,7 @@
 #FROM wordpress:6.1.1-php8.1-apache
 FROM wordpress:5.3.2-apache
 #FROM wordpress:5.3.2-php7.4-apache
-#RUN apt-get update && apt-get install -y magic-wormhole \
+RUN apt-get update && apt-get install -y magic-wormhole
 #		cp -s wp-config-docker.php wp-config.php
 #RUN set -eux; \
 #	find /etc/apache2 -name '*.conf' -type f -exec sed -ri -e "s!/var/www/html!$PWD!g" -e "s!Directory /var/www/!Directory $PWD!g" '{}' +; \
