@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y magic-wormhole \
 #RUN set -eux; \
 #	find /etc/apache2 -name '*.conf' -type f -exec sed -ri -e "s!/var/www/html!$PWD!g" -e "s!Directory /var/www/!Directory $PWD!g" '{}' +; \
 #	cp -s wp-config-docker.php wp-config.php
-WORKDIR /var/www/html	
+WORKDIR /var/www/wordpress	
 #COPY themes /var/www/html/wp-content/themes
 #COPY plugins /var/www/html/wp-content/plugins
 COPY uploads/ ./wp-content/uploads
