@@ -2,14 +2,15 @@
 # https://hub.docker.com/_/wordpress
 FROM wordpress:6.1.1-php8.1-apache
 #FROM wordpress:5.3.2-php7.4-apache
-RUN apt-get update && apt-get install -y magic-wormhole
+RUN apt-get update && apt-get install -y magic-wormhole \
+		cp -s wp-config-docker.php wp-config.php
 #RUN set -eux; \
 #	find /etc/apache2 -name '*.conf' -type f -exec sed -ri -e "s!/var/www/html!$PWD!g" -e "s!Directory /var/www/!Directory $PWD!g" '{}' +; \
 #	cp -s wp-config-docker.php wp-config.php
-	
+WORKDIR /var/www/html	
 #COPY themes /var/www/html/wp-content/themes
 #COPY plugins /var/www/html/wp-content/plugins
-COPY uploads/ /var/www/html/wp-content/uploads
+COPY uploads/ ./wp-content/uploads
 #COPY custom.ini $PHP_INI_DIR/conf.d/
 
 #COPY plugins /var/www/html/wp-content/plugins
