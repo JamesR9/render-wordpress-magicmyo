@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y magic-wormhole
 
 RUN usermod -s /bin/bash www-data
 RUN chown www-data:www-data /var/www
-RUN chown -R www-data:www-data /var/www/html/wp-content/uploads/*
-RUN chmod 755 /var/www/html/wp-content/uploads/*
+RUN chown -R www-data:www-data /var/www/html/wp-content/uploads/
+RUN chmod 755 /var/www/html/wp-content/uploads/
 USER www-data:www-data
 
