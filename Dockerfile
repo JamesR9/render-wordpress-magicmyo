@@ -3,23 +3,31 @@
 FROM wordpress:6.1.1-php8.1-apache
 #FROM wordpress:5.3.2-apache
 #FROM wordpress:5.3.2-php7.4-apache
-RUN apt-get update && apt-get install -y magic-wormhole
-#		cp -s wp-config-docker.php wp-config.php
-#RUN set -eux; \
-#	find /etc/apache2 -name '*.conf' -type f -exec sed -ri -e "s!/var/www/html!$PWD!g" -e "s!Directory /var/www/!Directory $PWD!g" '{}' +; \
-#	cp -s wp-config-docker.php wp-config.php
-#WORKDIR /var/www/html	
+# APT Update/Upgrade, then install packages we need
+RUN apt update && \
+    apt upgrade -y && \
+    apt autoremove && \
+    apt install -y \
+    vim \
+    wget \
+    mariadb-client
 
-#COPY plugins /var/www/html/wp-content/plugins
-#COPY wp-content/ ./wp-content
-#COPY custom.ini $PHP_INI_DIR/conf.d/
+# Replace php.ini
+COPY php.ini /usr/local/etc/php
 
-#COPY plugins /var/www/html/wp-content/plugins
-#COPY themes /var/www/html/wp-content/themes
-#COPY uploads /var/www/html/wp-content/uploads
-RUN usermod -s /bin/bash www-data
-RUN chown www-data:www-data /var/www/html
-USER www-data:www-data
+# Install WP-CLI
+RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
+    php wp-cli.phar --info&& \
+    chmod +x wp-cli.phar && \
+    mv wp-cli.phar /usr/local/bin/wp && \
+    # Remove old php.ini files (wihtout creating new image)
+    rm /usr/local/etc/php/php.ini-development && \
+    rm /usr/local/etc/php/php.ini-production
 
 
-#COPY twentynineteen /var/www/html/wp-content/themes/twentynineteen
+#RUN apt-get update && apt-get install -y magic-wormhole
+
+#RUN usermod -s /bin/bash www-data
+#RUN chown www-data:www-data /var/www/html
+#USER www-data:www-data
+
